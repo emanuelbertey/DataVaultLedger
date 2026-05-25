@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dtl8o4k3j2x1"]
+
+[ext_resource type="Script" path="res://testlinear_16.gd" id="1_x1a2b"]
+
+[node name="TestLinear16" type="Node"]
+script = ExtResource("1_x1a2b")

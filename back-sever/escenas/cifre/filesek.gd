@@ -267,3 +267,64 @@ func _on_h_slider_drag_started() -> void:
 func _on_quit_pressed() -> void:
 	self.queue_free()
 	pass # Replace with function body.
+
+
+
+# ─── NUEVO: Concatenar archivos ───────────────────────────────────────────────
+
+var file_list: Array[String] = []
+
+
+func _on_add_file_btn_pressed() -> void:
+	$FileDialogAdd.popup_centered()
+
+
+func _on_file_dialog_add_file_selected(path: String) -> void:
+	file_list.append(path)
+	_actualizar_lista_ui()
+
+
+func _actualizar_lista_ui() -> void:
+	var texto := "Archivos:\n"
+	for i in file_list.size():
+		texto += "[%d] %s\n" % [i + 1, file_list[i].get_file()]
+	$FileListLabel.text = texto
+
+
+func _on_concat_btn_pressed() -> void:
+	if file_list.is_empty():
+		push_warning("No hay archivos agregados.")
+		return
+	$FileDialogSave.popup_centered()
+
+
+func _on_file_dialog_save_file_selected(path: String) -> void:
+	if file_list.is_empty():
+		return
+
+	const CHUNK := 1 << 16
+	var total := 0
+	var f_out := FileAccess.open(path, FileAccess.WRITE)
+	if f_out == null:
+		push_error("No se pudo escribir: %s" % path)
+		return
+
+	for archivo in file_list:
+		var f := FileAccess.open(archivo, FileAccess.READ)
+		if f == null:
+			push_error("No se pudo abrir: %s" % archivo)
+			continue
+		while true:
+			var chunk := f.get_buffer(CHUNK)
+			if chunk.is_empty():
+				break
+			f_out.store_buffer(chunk)
+			total += chunk.size()
+		f.close()
+
+	f_out.flush()
+	f_out.close()
+	print("✅ Concatenación guardada (%d bytes) en: %s" % [total, path])
+
+	file_list.clear()
+	_actualizar_lista_ui()

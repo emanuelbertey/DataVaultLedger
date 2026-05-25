@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dp3x637cybflj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xowi"]
+
+[node name="Node3D" type="Node3D" unique_id=845042184]
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." unique_id=403596523]
+material_overlay = SubResource("StandardMaterial3D_4xowi")

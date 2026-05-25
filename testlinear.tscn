@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dr0vf3y3rmogs"]
+
+[ext_resource type="Script" uid="uid://cks6fe4djkaj3" path="res://testlinear.gd" id="1_wg7fo"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1284372214]
+script = ExtResource("1_wg7fo")

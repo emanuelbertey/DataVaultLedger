@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://bm3biq1jddmx6"
+path="res://.godot/imported/linear_layer_16.glsl-a699de56d7cb28069f3e143f53e3d6c1.res"
+
+[deps]
+
+source_file="res://linear_layer_16.glsl"
+dest_files=["res://.godot/imported/linear_layer_16.glsl-a699de56d7cb28069f3e143f53e3d6c1.res"]
+
+[params]
+
