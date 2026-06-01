@@ -87,6 +87,10 @@ offset_right = 227.0
 offset_bottom = 182.0
 text = "rat"
 
+[node name="Timer" type="Timer" parent="." unique_id=1074208565]
+wait_time = 5.8660000000000005
+autostart = true
+
 [connection signal="pressed" from="texto_plano" to="." method="_on_texto_plano_pressed"]
 [connection signal="pressed" from="binarios" to="." method="_on_binarios_pressed"]
 [connection signal="pressed" from="salir" to="." method="_on_salir_pressed"]
@@ -94,3 +98,4 @@ text = "rat"
 [connection signal="pressed" from="prueba_ram" to="." method="_on_prueba_ram_pressed"]
 [connection signal="pressed" from="rsa" to="." method="_on_rsa_pressed"]
 [connection signal="pressed" from="rat" to="." method="_on_rat_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

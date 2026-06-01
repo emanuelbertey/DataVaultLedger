@@ -97,3 +97,8 @@ func _on_rat_pressed() -> void:
 	prints("instancio escena")
 	await get_tree().create_timer(3).timeout
 	pass # Replace with function body.
+
+
+func _on_timer_timeout() -> void:
+	prints("mi godot timer ")
+	pass # Replace with function body.
