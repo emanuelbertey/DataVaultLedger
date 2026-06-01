@@ -4,7 +4,7 @@ extends Control
 
 
 func _ready() -> void:
-
+	prints("hola desde godot script")
 	pass 
 
 
