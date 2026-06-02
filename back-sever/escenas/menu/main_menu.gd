@@ -1,7 +1,16 @@
 extends Control
 
 
+var upnp = UPNP.new()
+var thread = null
+@export var upnp_ip = 0
+@export var port = 8888
+func _init() -> void:
 
+	self.port = port
+	thread = Thread.new()
+	thread.start(_upnp_setup.bind(port))
+	pass
 
 func _ready() -> void:
 	prints("hola desde godot script")
@@ -102,3 +111,20 @@ func _on_rat_pressed() -> void:
 func _on_timer_timeout() -> void:
 	prints("mi godot timer ")
 	pass # Replace with function body.
+
+
+
+
+func _upnp_setup(server_port):
+	prints("upnp setup iniciando")
+	var err = upnp.discover()
+	if err != OK:
+		push_error(str(err))
+		print("Error al asignar : %s" % port)
+		return
+	if upnp.get_gateway() and upnp.get_gateway().is_valid_gateway():
+		upnp.add_port_mapping(server_port, server_port, ProjectSettings.get_setting("application/config/name"), "UDP")
+		#upnp.add_port_mapping(server_port, server_port, ProjectSettings.get_setting("application/config/name"), "TCP")
+		upnp_ip = upnp.query_external_address()
+		print("Success! Join Address: %s" % upnp_ip)
+		
